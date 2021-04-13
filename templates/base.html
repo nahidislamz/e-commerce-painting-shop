@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- CSS only -->
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/mdb.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+
+    <link
+      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@600&family=Lemonada:wght@300&Teko:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Teko", sans-serif;
+      }
+      .dropbtn {
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+      }
+
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        right: 20px;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+      }
+
+      .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+
+      .dropdown-content a:hover {
+        background-color: #ddd;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+    </style>
+    <title>Paintings</title>
+  </head>
+  <body>
+    <header class="py-3">
+      <div class="row flex-nowrap justify-content-between align-items-center">
+        <div class="col-4 pt-1">
+          <a class="link" href="#"></a>
+        </div>
+        <div class="col-4 d-flex justify-content-end align-items-center">
+          <a class="link" href="{% url 'home' %}">
+            <i style="font-size: 25px" class="bx bx-home-alt"></i
+          ></a>
+          {% if user.is_authenticated %}{% load cartcounter %}
+          <a class="nav-link" href="{% url 'cart' %}">
+            <span style="font-size: 10px" class="badge badge-sm bg-warning"
+              >{{request.user | cart_count }}</span
+            ><i style="font-size: 25px" class="bx bx-cart-alt bx-tada pr-1"></i>
+          </a>
+          <div class="dropdown pr-4">
+            <a class="nav-link dropbtn" href="#">
+              <img
+                width="25"
+                src="{{request.user.customer.profile_pic.url}}"
+                class="rounded-circle z-depth-0"
+                alt="avatar image"
+              />
+            </a>
+            <ul class="dropdown-content">
+              <a class="dropdown-item" href="{% url 'profile' %}">My Profile</a>
+              <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+            </ul>
+          </div>
+          {% else %}
+          <div class="dropdown">
+            <a class="dropbtn link px-4" href="#"
+              ><i style="font-size: 25px" class="bx bx-user"></i
+            ></a>
+            <ul class="dropdown-content">
+              <a class="dropdown-item" href="{% url 'signup' %}">Register</a>
+              <a class="dropdown-item" href="{% url 'signin' %}">Login</a>
+              <a class="dropdown-item" href="{% url 'seller_signup' %}"
+                >Be a seller</a
+              >
+            </ul>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </header>
+
+    {%block content%} {%endblock content%}
+
+    <footer>
+      <div class="p-0 m-0">
+        <div class="p-4 text-center">
+          <p class="h6 p-4">
+            © All right Reversed.<a href="#"> buypaintings.com</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

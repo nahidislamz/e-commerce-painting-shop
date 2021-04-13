@@ -1,0 +1,59 @@
+{% extends "base.html"%}
+
+{%block content%}
+<style>
+    .login {
+  margin-top: 120px;
+  margin-bottom: 40px;
+  width: 30%;
+  left: 35%;
+}
+
+@media screen and (max-width: 930px) {
+  .login {
+    left: 1%;
+    width: 95%;
+    margin: 2%;
+  }
+}
+</style>
+<div class="animated fadeInDown card login">
+    <form class="text-center border border-light p-5" method="POST">
+      {% csrf_token%}
+      <p class="h4 mb-4">Sign in</p>
+  
+      <input
+        type="text"
+        id="defaultLoginFormEmail"
+        class="form-control mb-4"
+        placeholder="Username"
+        name="username"
+      />
+  
+      <input
+        type="password"
+        id="defaultLoginFormPassword"
+        class="form-control mb-4"
+        placeholder="Password"
+        name="password"
+      />
+
+  
+      <!-- Sign in button -->
+      <button class="btn btn-dark btn-block my-4" type="submit">Sign in</button>
+      {% for message in messages%}
+      <p class="text-danger text-center">{{message}}</p>
+      {% endfor %}
+      <!-- Register -->
+      <p>
+         <div>
+          <!-- Forgot password -->
+          <a href="{% url 'reset_password' %}">Forgot password?</a>
+        </div>
+        Not a member?
+        <a href="{% url 'signup' %}">Register</a>
+      </p>
+    </form>
+  </div>
+
+{%endblock content%}

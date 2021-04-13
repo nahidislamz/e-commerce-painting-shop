@@ -1,0 +1,77 @@
+{% extends "base.html"%} {%block content%}
+<div class="container-fluid text-center mb-5 mt-3">
+  <h1 class="mb-5 pt-4">Your Cart</h1>
+  <table class="table mb-5">
+    <thead>
+      <tr>
+        <th scope="col">No.</th>
+        <th scope="col"></th>
+        <th scope="col">Product</th>
+        <th scope="col">Price</th>
+        <th scope="col">Qty</th>
+        <th scope="col">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in cart %}
+      <tr>
+        <th scope="row"><h2 class="text-dark">{{ forloop.counter }}</h2></th>
+        <td>
+          <img
+            src="{{ i.product.product_image.url }}"
+            style="object-fit: cover; width: 100px; height: 100px"
+            class="card-img-top"
+            alt="loading..."
+          />
+        </td>
+        <td>{{i.product.title}}</td>
+        <td>${{i.product.price}}</td>
+        <td>
+          <a
+            href="{% url 'minuscart' i.product.id %}"
+            class="btn btn-sm btn-outline-dark p-1"
+          >
+            <i class="fas fa-minus"></i
+          ></a>
+          {{i.quantity}}
+          <a
+            href="{% url 'pluscart' i.product.id %}"
+            class="btn btn-sm btn-outline-dark p-1"
+          >
+            <i class="fas fa-plus"></i
+          ></a>
+        </td>
+        <td>{{i.productTotal}}</td>
+        <td>
+          <a
+            href="{% url 'removecart' i.product.id %}"
+            class="btn btn-sm btn-outline-danger px-2"
+          >
+            <i class="fas fa-times text-danger"></i
+          ></a>
+        </td>
+      </tr>
+
+      {% endfor %}
+      <tr>
+        <th scope="row"></th>
+        <td colspan="3">Total</td>
+        <td>${{ order.orderTotal }}</td>
+      </tr>
+
+      <tr>
+        <td colspan="4">
+          <a href="{% url 'home' %}" class="btn btn-warning btn-lg"
+            >Back To Home</a
+          >
+        </td>
+        <td>
+          <a class="btn btn-info btn-lg" href="{% url 'checkout' %}"
+            >Go To Chcekout</a
+          >
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{%endblock content%}

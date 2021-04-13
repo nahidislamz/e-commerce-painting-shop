@@ -1,0 +1,16 @@
+{% extends "base.html"%} {%block content%}
+<div class="jumbotron text-center pt-4">
+  <h1 class="display-4 mt-5">Congrats!</h1>
+  <p class="lead">You have successfully placed your order</p>
+  <hr class="my-4" />
+  <p>We'll take payments on delivery</p>
+  <p class="lead">
+    <a
+      class="btn btn-primary btn-lg"
+      href="{% url 'orders_user' %}"
+      role="button"
+      >View Orders</a
+    >
+  </p>
+</div>
+{%endblock content%}

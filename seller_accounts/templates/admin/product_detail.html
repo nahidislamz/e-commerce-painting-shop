@@ -1,0 +1,33 @@
+{% extends 'admin.html' %} {% block content %}
+<div class="container-fluid">
+  <!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Products Detail</h1>
+  </div>
+  <div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-body text-center">
+        <img
+          src="{{ product.product_image.url }}"
+          style="object-fit: cover; width: 400px; height: 400px"
+          class="card-img-top"
+          alt="loading..."
+        />
+
+        <h4 class="py-2">{{product.title}}</h4>
+        <p>{{product.description}}</p>
+        <p>Price: $ {{product.price}}</p>
+        <div>
+          <a href="#" class="btn btn-warning btn-circle btn-sm mb-1 mx-1">
+            <i class="fas fa-edit"></i>
+          </a>
+          <a href="#" class="btn btn-danger btn-circle btn-sm mb-1 mx-1">
+            <i class="fas fa-trash"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

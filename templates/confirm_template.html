@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Confirmation</title>
+  </head>
+  <body>
+    <div
+      style="
+        margin: 100px;
+        text-align: center;
+        color: green;
+        font-weight: bolder;
+        font-size: 30px;
+        padding: 20px;
+      "
+    >
+      {% if success %} {{ user.username }}, your account is confirmed! {% else
+      %} Error, invalid token! {% endif %}
+      <a href="{% url 'signin' %}">You Can Login</a>
+    </div>
+  </body>
+</html>

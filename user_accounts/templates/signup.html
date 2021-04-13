@@ -1,0 +1,91 @@
+{% extends 'base.html' %} {% block title %}
+<title>Sign Up</title>
+{% endblock title %} {% block content %}
+<style>
+    .login {
+  margin-top: 120px;
+  margin-bottom: 40px;
+  width: 30%;
+  left: 35%;
+}
+
+@media screen and (max-width: 930px) {
+  .login {
+    left: 1%;
+    width: 95%;
+    margin: 2%;
+  }
+}
+</style>
+<div class="card login">
+ 
+  <form class="text-center border border-light p-5" method="POST">
+    {% csrf_token%}
+    <p class="h4 mb-4">Sign up</p>
+
+    <div class="form-row mb-4">
+      <div class="col">
+     
+        <input
+          type="text"
+          id="defaultRegisterFormFirstName"
+          class="form-control"
+          name="fname"
+          placeholder="First name"
+        />
+      </div>
+      <div class="col">
+       
+        <input
+          type="text"
+          id="defaultRegisterFormLastName"
+          class="form-control"
+          name="lname"
+          placeholder="Last name"
+        />
+      </div>
+    </div>
+    <input
+      type="email"
+      id="defaultRegisterFormEmail"
+      class="form-control mb-4"
+      name="email"
+      placeholder="E-mail"
+    />
+    <input
+      type="text"
+      id="defaultRegisterFormEmail"
+      class="form-control mb-4"
+      name="username"
+      placeholder="Username"
+    />
+    <input
+      type="password"
+      id="defaultRegisterFormPassword"
+      class="form-control"
+      placeholder="Password"
+      name="password1"
+      aria-describedby="defaultRegisterFormPasswordHelpBlock"
+    />
+    <small
+      id="defaultRegisterFormPasswordHelpBlock"
+      class="form-text text-muted mb-4"
+    >
+      At least 8 characters and 1 digit
+    </small>
+    <input
+      type="password"
+      id="defaultRegisterFormPassword"
+      class="form-control"
+      placeholder="Confirm Password"
+      name="password2"
+      aria-describedby="defaultRegisterFormPasswordHelpBlock"
+    />
+    <button class="btn btn-outline-dark my-4 btn-block" type="submit">Sign Up</button>
+    <p>
+      Already a member?
+      <a href="{% url 'signin' %}">Login</a>
+    </p>
+  </form>
+</div>
+{% endblock content %}

@@ -1,0 +1,43 @@
+{% extends 'admin.html' %} {% block content %}{% load crispy_forms_tags %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+  <!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Category</h1>
+  </div>
+  <div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">
+          {{ request.user.seller.company_name}} Categories
+        </h6>
+      </div>
+      <div class="card-body">
+        <div class="">
+          <form action="" method="post" autocomplete="off">
+            {% csrf_token %} {{form.category|as_crispy_field}}
+
+            <div class="row">
+              <div class="col-md-8 mb-2">
+                <button type="submit" class="btn btn-success btn-block btn-lg">
+                  <i class="fas fa-database"></i> Save
+                </button>
+              </div>
+              <div class="col-md-4 mb-2">
+                <a
+                  href="{% url 'category' %}"
+                  class="btn btn-secondary btn-block btn-lg"
+                >
+                  <i class="fas fa-stream"></i> Back to Category
+                </a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.container-fluid -->
+{% endblock content %}

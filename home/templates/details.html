@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% load static %}
+<!--Block-->
+{% block content %} {% for i in product %}
+<div class="container">
+  <img
+    src="{{ i.product_image.url }}"
+    style="object-fit: cover; width: 250px; height: 250px"
+    class="card-img-top"
+    alt="loading..."
+  />
+
+  <h1 class="display-4 my-2">{{i.title}}</h1>
+  <p class="lead">{{i.description}}</p>
+  <hr class="my-4" />
+  <p>Price: ${{i.price}}</p>
+  <p class="lead">
+    <a
+      href="{% url 'cart' i.id %}#{{i.id}}"
+      type="button"
+      class="btn btn-sm btn-light"
+      ><i style="font-size: 18px" class="fa fa-cart-plus" aria-hidden="true"></i
+    ></a>
+  </p>
+  <p style="font-weight: bold">
+    Seller: <span style="color: crimson">{{i.Seller.company_name}}</span>
+  </p>
+</div>
+{% endfor %} {% endblock content %}

@@ -1,0 +1,77 @@
+{% extends "base.html" %} 
+{% load crispy_forms_tags %}
+<!-- Begin Page Content -->
+{%block content%}
+
+{% load static %}
+    <div class="text-center">
+      <div class="text-dark">
+        <h1
+          class="text-center mt-5 h1-responsive"
+          style="font-family: 'Crimson Text', serif"
+        >
+          <span style="color: #5c7979">WEL</span
+          ><span style="color: #a7a7b5">COME TO </span><br />
+          <span
+            style="
+              font-family: 'Lemonada', cursive;
+              font-size: 26px;
+              color: #a7a7b5;
+            "
+            >BuyPaintings</span
+          >
+        </h1>
+          <!-- Topbar Search -->
+            <form method="GET"
+              class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
+            >
+              <div class="d-flex">
+               {{search.form.title | as_crispy_field }}
+                <div class="input-group-append">
+                  <button class="btn btn-light" type="submit">
+                    <i class="fas fa-search fa-sm"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+      </div>
+    
+        <div style="font-family: 'Teko', sans-serif" class="px-5 mt-5">
+          <ul class="nav nav-pills nav-fill">
+            <li class="nav-item">
+              <h4 class="p-1">Categories</h4>
+            </li>
+            {% for c in category%}
+            <li class="nav-item">
+              <a class="nav-link" href="{%url 'category' c.id %}">{{c.category}}</a>
+            </li>
+            {%endfor%}
+           
+          </ul>
+      </div>
+    </div>
+<!--Product Section-->
+<div class="container p-4 mt-5">
+  <div class="row row-cols-4">
+    {% for i in product %}
+    <div class="col p-4" id="{{i.id}}">
+      <div class="card">
+        <img src="{{ i.product_image.url }}" style="object-fit: cover;width: 100%;height: 200px;" class="card-img-top" alt="loading...">
+        <div class="card-body">
+          <h5 class="card-title">{{i.title}}</h5>
+          <p class="text-secondary m-0 p-0"></p>Price: ${{i.price}}</p>
+          <span class="badge badge-sm text-dark m-0 p-0">Seller: {{i.Seller.company_name}}</span>
+          <div class="text-center mt-2">
+            <a href="{% url 'cart' i.id %}#{{i.id}}" type="button" class="btn btn-sm btn-light"><i style="font-size:18px" class="fa fa-cart-plus" aria-hidden="true"></i></a>
+            <a href="{% url 'details' i.id %}" type="button" class="btn btn-sm btn-grey"><i style="font-size:18px;color:#fff;" class="fa fa-info-circle" aria-hidden="true"></i></a>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+    {% endfor %}
+
+  </div>
+</div>
+{%endblock content%}

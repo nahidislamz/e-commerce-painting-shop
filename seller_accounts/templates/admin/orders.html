@@ -1,0 +1,88 @@
+{% extends 'admin.html' %} {% block content %} {% load crispy_forms_tags %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+  <!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Products</h1>
+  </div>
+  <div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <div class="row">
+          <div class="col-lg-6 mb-2">
+            <h6 class="m-0 font-weight-bold text-primary">
+              {{ request.user.seller.company_name}} Products
+            </h6>
+          </div>
+          <div class="col-lg-6 mb-2">
+            <form method="GET">
+              <div
+                id="dataTable_filter"
+                class="dataTables_filter d-flex py-2 justify-content-end"
+              >
+                {{mFilter.form.status | as_crispy_field }}
+
+                <div class="mt-4 pt-1 px-2">
+                  <button class="btn btn-success btn-sm px-3 p-2" type="submit">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table
+            class="table table-bordered"
+            id="dataTable"
+            width="100%"
+            cellspacing="0"
+          >
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Item</th>
+                <th>By</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {% for i in orders %}
+              <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>
+                  {% for item in i.cartitem.all %} {{ item }}
+                  <br />
+                  {% endfor %}
+                  <p class="grey-text pt-3">{{i.date_created}}</p>
+                </td>
+                <td>{{i.user}}</td>
+                <td>
+                  <span class="badge badge-{{i.status}} p-2"
+                    >{{i.status}}
+                  </span>
+                </td>
+                <td>
+                  <a
+                    class="btn btn-secondary btn-sm p-1 px-2"
+                    href="{% url 'order_update' i.id%}"
+                    ><i class="fas fa-edit"></i
+                  ></a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.container-fluid -->
+
+{% endblock content %}

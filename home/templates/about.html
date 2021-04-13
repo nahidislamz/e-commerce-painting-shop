@@ -1,0 +1,41 @@
+{% extends "base.html"%} {%block content%}
+<style>
+  .avatar {
+    border: 0.3rem solid rgba(#fff, 0.3);
+    margin-top: -6rem;
+    margin-bottom: 1rem;
+    max-width: 9rem;
+  }
+</style>
+{%load static%}
+<div class="mb-5 mt-5">
+  <h1 class="mb-5 pt-4 text-center">About Developer</h1>
+  <div class="container d-flex justify-content-center">
+    <div class="row">
+      <div class="col-12">
+        <div class="card my-5">
+          <div class="card-body text-center">
+            <img
+              class="avatar rounded-circle border"
+              src="{% static '/images/profile.png' %}"
+              alt="Bologna"
+            />
+            <h4 class="card-title">Maliha Tabassum Jahan</h4>
+            <h5 class="card-subtitle mb-2 text-muted">ID 172-115-006</h5>
+            <p class="card-text">Batch: 42nd | Department of CSE</p>
+            <a href="#" class="link ml-2"
+              ><i style="font-size: 20px" class="fab fa-facebook"></i
+            ></a>
+            <a href="#" class="link ml-2"
+              ><i style="font-size: 20px" class="fab fa-instagram"></i
+            ></a>
+            <a href="mailto:malihaztabassumz@gmail.com" class="link ml-2">
+              <i style="font-size: 20px" class="far fa-envelope"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock content%}
