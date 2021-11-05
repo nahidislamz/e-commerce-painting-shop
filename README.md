@@ -21,5 +21,13 @@
 - Seller can add their company name
 
 ## Home Page
-
 ![Home Page](UI/home.png)
+
+## Add To Cart Page
+![Add To Cart Page](UI/cart.png)
+
+## Search Page
+![Search Page](UI/search.png)
+
+## Seller Dashboard
+![Seller Dashboard](UI/seller_dashboard.png)
