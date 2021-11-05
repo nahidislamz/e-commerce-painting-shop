@@ -1,7 +1,13 @@
 {% extends 'base.html' %} {% load static %}
 <!--Block-->
 {% block content %} {% for i in product %}
-<div class="container">
+<div class="container pt-5">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{%url 'home' %}">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{i.title}}</li>
+    </ol>
+  </nav>
   <img
     src="{{ i.product_image.url }}"
     style="object-fit: cover; width: 250px; height: 250px"
@@ -9,10 +15,11 @@
     alt="loading..."
   />
 
-  <h1 class="display-4 my-2">{{i.title}}</h1>
+  <h1 class="display-5 my-2">{{i.title}}</h1>
+  <p class="text-danger">Price: ${{i.price}}</p>
   <p class="lead">{{i.description}}</p>
   <hr class="my-4" />
-  <p>Price: ${{i.price}}</p>
+  
   <p class="lead">
     <a
       href="{% url 'cart' i.id %}#{{i.id}}"
@@ -22,7 +29,7 @@
     ></a>
   </p>
   <p style="font-weight: bold">
-    Seller: <span style="color: crimson">{{i.Seller.company_name}}</span>
+    Seller: <span style="color: green">{{i.Seller.company_name}}</span>
   </p>
 </div>
 {% endfor %} {% endblock content %}
